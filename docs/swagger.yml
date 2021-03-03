@@ -116,6 +116,55 @@ paths:
                       testData: string
         description: ''
       description: ''
+  /attributes:
+    parameters: []
+    get:
+      summary: 属性一覧を取得する
+      operationId: get-attribute
+      responses:
+        '200':
+          description: get anotaion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  attribute:
+                    type: object
+                    properties:
+                      assertion:
+                        type: array
+                      anotation:
+                        type: array
+                      type:
+                        type: array
+              examples:
+                '200':
+                  value:
+                    attribute: {
+                      assertion:[
+                        assertArrayHasKey,
+                        assertClassHasAttribute,
+                        .,
+                        .,
+                        .
+                        ],
+                      anotation: [
+                        author,
+                        after,
+                        .,
+                        .,
+                        .
+                        ],
+                      type: [
+                        string,
+                        int,
+                        .,
+                        .,
+                        .
+                      ]
+                      }
+
 components:
   schemas: {}
   securitySchemes:
