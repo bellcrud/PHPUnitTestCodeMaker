@@ -1,174 +1,176 @@
-openapi: 3.0.0
-info:
-  title: PHPUnitTestCodeMaker
-  version: '1.0'
-  description: RestAPI for PHPUnitTestCodeMaker
-servers:
-  - url: 'http://localhost/api/v1/'
-    description: ローカル
-paths:
-  /testfile:
-    parameters: []
-    post:
-      summary: テストファイル作成
-      operationId: post-testfile
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  resultData:
-                    type: string
-              examples:
-                '201':
-                  value:
-                    message: テストファイルが作成されました
-                    resultData: '<?php class hogehogeTest extends TestCase {........'
-                example-2:
-                  value:
-                    message: string
-                    resultData: string
-        '422':
-          description: バリデーションエラー
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    message: クラス名は必須です。
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              examples:
-                バリデーション エラー:
-                  value:
-                    message: string
-        '500':
-          description: サーバーエラー
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    message: システムエラーとなりました。時間を開けて再度実施してください。
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                className:
-                  type: string
-                methodList:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      methodName:
-                        type: string
-                      assertionList:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            assertionId:
-                              type: string
-                            assertionExpectValue:
-                              type: string
-                            assertionExpectType:
-                              type: string
-                      anotationList:
-                        type: array
-                        items:
-                          type: string
-                      testData:
-                        type: string
-            examples:
-              example-1:
-                value:
-                  className: string
-                  methodList:
-                    - methodName: string
-                      assertionList:
-                        - assertionId: string
-                          assertionExpectValue: string
-                          assertionExpectType: string
-                      anotationList:
-                        - string
-                      testData: string
-        description: ''
-      description: ''
-  /attributes:
-    parameters: []
-    get:
-      summary: 属性一覧を取得する
-      operationId: get-attribute
-      responses:
-        '200':
-          description: get anotaion
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  attribute:
-                    type: object
-                    properties:
-                      assertion:
-                        type: array
-                      anotation:
-                        type: array
-                      type:
-                        type: array
-              examples:
-                '200':
-                  value:
-                    attribute: {
-                      assertion:[
-                        assertArrayHasKey,
-                        assertClassHasAttribute,
-                        .,
-                        .,
-                        .
-                        ],
-                      anotation: [
-                        author,
-                        after,
-                        .,
-                        .,
-                        .
-                        ],
-                      type: [
-                        string,
-                        int,
-                        .,
-                        .,
-                        .
-                      ]
-                      }
-
-components:
-  schemas: {}
-  securitySchemes:
-    api_key:
-      name: API Key
-      type: apiKey
-      in: header
+TODO: SPA化した際に実装する
+#openapi: 3.0.0
+#info:
+#  title: PHPUnitTestCodeMaker
+#  version: '1.0'
+#  description: RestAPI for PHPUnitTestCodeMaker
+#servers:
+#  - url: 'http://localhost/api/v1/'
+#    description: ローカル
+#paths:
+#  /testfile:
+#    parameters: []
+#    post:
+#      summary: テストファイル作成
+#      operationId: post-testfile
+#      responses:
+#        '201':
+#          description: Created
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  message:
+#                    type: string
+#                  resultData:
+#                    type: string
+#              examples:
+#                '201':
+#                  value:
+#                    message: テストファイルが作成されました
+#                    resultData: '<?php class hogehogeTest extends TestCase {........'
+#                example-2:
+#                  value:
+#                    message: string
+#                    resultData: string
+#        '422':
+#          description: バリデーションエラー
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  message:
+#                    type: string
+#              examples:
+#                example-1:
+#                  value:
+#                    message: クラス名は必須です。
+#            application/xml:
+#              schema:
+#                type: object
+#                properties:
+#                  message:
+#                    type: string
+#              examples:
+#                バリデーション エラー:
+#                  value:
+#                    message: string
+#        '500':
+#          description: サーバーエラー
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  message:
+#                    type: string
+#              examples:
+#                example-1:
+#                  value:
+#                    message: システムエラーとなりました。時間を開けて再度実施してください。
+#      requestBody:
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                className:
+#                  type: string
+#                methodList:
+#                  type: array
+#                  items:
+#                    type: object
+#                    properties:
+#                      methodName:
+#                        type: string
+#                      assertionList:
+#                        type: array
+#                        items:
+#                          type: object
+#                          properties:
+#                            assertionId:
+#                              type: string
+#                            assertionExpectValue:
+#                              type: string
+#                            assertionExpectType:
+#                              type: string
+#                      anotationList:
+#                        type: array
+#                        items:
+#                          type: string
+#                      testData:
+#                        type: string
+#            examples:
+#              example-1:
+#                value:
+#                  className: string
+#                  methodList:
+#                    - methodName: string
+#                      assertionList:
+#                        - assertionId: string
+#                          assertionExpectValue: string
+#                          assertionExpectType: string
+#                      anotationList:
+#                        - string
+#                      testData: string
+#        description: ''
+#      description: ''
+#  /attributes:
+#    parameters: []
+#    get:
+#      summary: 属性一覧を取得する
+#      operationId: get-attribute
+#      responses:
+#        '200':
+#          description: get anotaion
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  attribute:
+#                    type: object
+#                    properties: [
+#                      assertion:
+#                        type: array
+#                      anotation:
+#                        type: array
+#                      type:
+#                        type: array
+#                    ]
+#              examples:
+#                '200':
+#                  value:
+#                    attribute: {
+#                      assertion:[
+#                        assertArrayHasKey,
+#                        assertClassHasAttribute,
+#                        .,
+#                        .,
+#                        .
+#                        ],
+#                      anotation: [
+#                        author,
+#                        after,
+#                        .,
+#                        .,
+#                        .
+#                        ],
+#                      type: [
+#                        string,
+#                        int,
+#                        .,
+#                        .,
+#                        .
+#                      ]
+#                      }
+#
+#components:
+#  schemas: {}
+#  securitySchemes:
+#    api_key:
+#      name: API Key
+#      type: apiKey
+#      in: header
